@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="98bfb009-4313-4d6f-b9be-e7505cc9454a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Robot-project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backtesting/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backtesting/backtester.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backtesting/monte_carlo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backtesting/walk_forward.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/__init__..py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/data_fetcher.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/latency_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/market_context.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/sandbox_setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monitoring/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monitoring/alerts.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monitoring/performance_tracker.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monitoring/signal_quality.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/risk/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/risk/portfolio_risk.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/risk/position_sizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/risk/stop_loss_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/strategies/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/strategies/base_strategy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/strategies/ensemble_strategy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/strategies/ml_strategy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/find_figi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/helpers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/indicators.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/logger.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="3AcUTaUZEYhJu3fYc1Ov6rqVWlF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python tests.Python tests in sandbox_setup.py.executor": "Run",
+    "Python.alerts.executor": "Run",
+    "Python.backtester.executor": "Run",
+    "Python.base_strategy.executor": "Run",
+    "Python.config.executor": "Run",
+    "Python.data_fetcher.executor": "Run",
+    "Python.ensemble_strategy.executor": "Run",
+    "Python.find_figi.executor": "Run",
+    "Python.latency_manager.executor": "Run",
+    "Python.market_context.executor": "Run",
+    "Python.ml_strategy.executor": "Run",
+    "Python.performance_tracker.executor": "Run",
+    "Python.portfolio_risk.executor": "Run",
+    "Python.position_sizer.executor": "Run",
+    "Python.signal_quality.executor": "Run",
+    "Python.stop_loss_manager.executor": "Run",
+    "Python.walk_forward.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "junie.onboarding.icon.badge.shown": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/core" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-41e8cd69c857-64d779b69b7a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26927.90" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="98bfb009-4313-4d6f-b9be-e7505cc9454a" name="Changes" comment="" />
+      <created>1772891360327</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1772891360327</updated>
+    </task>
+    <servers />
+  </component>
+</project>
