@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98bfb009-4313-4d6f-b9be-e7505cc9454a" name="Changes" comment="" />
+    <list default="true" id="98bfb009-4313-4d6f-b9be-e7505cc9454a" name="Changes" comment="added execution engine">
+      <change afterPath="$PROJECT_DIR$/core/broker_adapter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/risk/risk_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/data_fetcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/data_fetcher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,38 +46,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python tests.Python tests in sandbox_setup.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_ml_fixed.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_vkco.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.adaptive_ml_strategy.executor&quot;: &quot;Run&quot;,
-    &quot;Python.alerts.executor&quot;: &quot;Run&quot;,
-    &quot;Python.backtester.executor&quot;: &quot;Run&quot;,
-    &quot;Python.base_strategy.executor&quot;: &quot;Run&quot;,
-    &quot;Python.config.executor&quot;: &quot;Run&quot;,
-    &quot;Python.data_fetcher.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ensemble_strategy.executor&quot;: &quot;Run&quot;,
-    &quot;Python.find_figi.executor&quot;: &quot;Run&quot;,
-    &quot;Python.indicators.executor&quot;: &quot;Run&quot;,
-    &quot;Python.latency_manager.executor&quot;: &quot;Run&quot;,
-    &quot;Python.market_context.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ml_strategy.executor&quot;: &quot;Run&quot;,
-    &quot;Python.performance_tracker.executor&quot;: &quot;Run&quot;,
-    &quot;Python.portfolio_risk.executor&quot;: &quot;Run&quot;,
-    &quot;Python.position_sizer.executor&quot;: &quot;Run&quot;,
-    &quot;Python.signal_quality.executor&quot;: &quot;Run&quot;,
-    &quot;Python.stop_loss_manager.executor&quot;: &quot;Run&quot;,
-    &quot;Python.walk_forward.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python tests.Python tests in sandbox_setup.py.executor": "Run",
+    "Python tests.Python tests in test_ml_fixed.py.executor": "Run",
+    "Python tests.Python tests in test_vkco.py.executor": "Run",
+    "Python.adaptive_ml_strategy.executor": "Run",
+    "Python.alerts.executor": "Run",
+    "Python.backtester.executor": "Run",
+    "Python.base_strategy.executor": "Run",
+    "Python.config.executor": "Run",
+    "Python.data_fetcher.executor": "Run",
+    "Python.ensemble_strategy.executor": "Run",
+    "Python.find_figi.executor": "Run",
+    "Python.indicators.executor": "Run",
+    "Python.latency_manager.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.market_context.executor": "Run",
+    "Python.ml_strategy.executor": "Run",
+    "Python.performance_tracker.executor": "Run",
+    "Python.portfolio_risk.executor": "Run",
+    "Python.position_sizer.executor": "Run",
+    "Python.signal_quality.executor": "Run",
+    "Python.stop_loss_manager.executor": "Run",
+    "Python.walk_forward.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "junie.onboarding.icon.badge.shown": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
@@ -118,13 +125,22 @@
       <option name="project" value="LOCAL" />
       <updated>1773225965805</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added execution engine">
+      <option name="closed" value="true" />
+      <created>1773231191870</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1773231191870</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="v1&#10;Работает:&#10;VKCO - загружено 6186 минутных свечей за 7 дней&#10;&#10;Волатильность (минутная годовая): 37.8% - отличный показатель для интрадей торговли&#10;&#10;Цена ~300 руб, хороший объем&#10;&#10;Это именно то, что нам нужно для тестирования стратегии&#10;&#10;Не работают:&#10;Фьючерсы (MTLR, SMLT, AFKS, GMKN) - нет данных. Возможно, для фьючерсов нужно использовать другие интервалы или они уже истекли (в названии даты 06.23, 09.24)&#10;&#10;GAZP - не работает (возможно, неверный FIGI)&#10;&#10;OZON - не проверяли, но скорее всего не тот инструмент&#10;&#10;SBER - нашелся как облигация, не подходит для нашей стратегии" />
     <MESSAGE value="v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="v2" />
+    <MESSAGE value="added execution engine" />
+    <option name="LAST_COMMIT_MESSAGE" value="added execution engine" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

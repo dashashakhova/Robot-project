@@ -342,6 +342,23 @@ class DataFetcher:
         print("\n⚠️  Внимание: Фьючерсы имеют ограниченный срок жизни (дата экспирации)")
         print("   Для торговли фьючерсами нужно учитывать дату окончания контракта")
 
+        def get_latest_data(self, instrument):
+
+            candles = self.get_candles(instrument)
+
+            if not candles:
+                return None
+
+            last = candles[-1]
+
+            return {
+                "open": last.open,
+                "high": last.high,
+                "low": last.low,
+                "close": last.close,
+                "volume": last.volume
+            }
+
 
 def main():
     """Тестирование загрузки данных для разных инструментов"""
@@ -360,7 +377,7 @@ def main():
     print("📊 ТЕСТИРОВАНИЕ ЗАГРУЗКИ ДАННЫХ ДЛЯ РАЗНЫХ ИНСТРУМЕНТОВ")
     print("=" * 90)
 
-    fetcher = DataFetcher(TOKEN)
+    fetcher = DataFetcher(token=TOKEN)
 
     # Показываем информацию об инструментах
     fetcher.print_instruments_info()
