@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98bfb009-4313-4d6f-b9be-e7505cc9454a" name="Changes" comment="added execution engine">
-      <change afterPath="$PROJECT_DIR$/core/broker_adapter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/risk/risk_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/market_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/data_fetcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/data_fetcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
@@ -64,6 +63,7 @@
     "Python.latency_manager.executor": "Run",
     "Python.main.executor": "Run",
     "Python.market_context.executor": "Run",
+    "Python.market_data.executor": "Run",
     "Python.ml_strategy.executor": "Run",
     "Python.performance_tracker.executor": "Run",
     "Python.portfolio_risk.executor": "Run",

@@ -11,21 +11,26 @@ from strategies.trend_follower import TrendFollowerStrategy
 from execution.execution_engine import ExecutionEngine
 from risk.risk_manager import RiskManager
 
+from engine.market_data import MarketDataEngine
+
 load_dotenv()
-TOKEN = os.getenv("t.WoukfFLjVlRd5PeZ0gne4_pGkjGu7VGXG1RfUAYHQ3JUW2F3_3WV16r2xHjjsxPT-0F0NgQyZIXoMKp2F_u0HQ")
-
-fetcher = DataFetcher(token=TOKEN)
-
+TOKEN = os.getenv("INVEST_TOKEN")
 
 def main():
 
     instrument = "SBER"
 
     # DATA
-    data_fetcher = DataFetcher()
+    data_fetcher = DataFetcher(token=TOKEN)
+
+    # Market Data Engine
+    market_data = MarketDataEngine(data_fetcher)
+
+    # Загружаем историю (ВАЖНО: после создания market_data)
+    market_data.load_history(instrument, days=5)
 
     # STRATEGY
-    strategy = TrendFollowerStrategy()
+    strategy = TrendFollowerStrategy(instrument)
 
     # RISK
     risk_manager = RiskManager()
@@ -46,16 +51,18 @@ def main():
         try:
 
             # Получаем данные
-            market_data = data_fetcher.get_latest_data(instrument)
+            market_data.update_market_data(instrument)
+
+            df = market_data.get_dataframe(instrument)
 
             if market_data is None:
                 time.sleep(5)
                 continue
 
-            price = market_data["close"]
+            price = df['close'].iloc[-1]
 
             # Генерируем сигнал
-            signal = strategy.generate_signal(market_data)
+            signal = strategy.get_signal(df)
 
             if signal:
 
@@ -65,7 +72,7 @@ def main():
                     price=price
                 )
 
-            time.sleep(10)
+            time.sleep(30)
 
         except Exception as e:
 

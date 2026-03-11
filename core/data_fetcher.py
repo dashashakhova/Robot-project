@@ -23,22 +23,18 @@ class DataFetcher:
 
     # Словарь с инструментами (актуальные FIGI из поиска)
     INSTRUMENTS = {
-        # Фьючерсы (высоковолатильные, но с ограниченным сроком жизни)
-        "MTLR": {"figi": "FUTMTLR09240", "name": "Мечел фьючерс", "lot": 1, "type": "futures"},
-        "SMLT": {"figi": "FUTSMLT06230", "name": "Самолет фьючерс", "lot": 1, "type": "futures"},
-        "AFKS": {"figi": "FUTAFKS06220", "name": "АФК Система фьючерс", "lot": 1, "type": "futures"},
-        "GMKN": {"figi": "FUTGMKN06230", "name": "Норникель фьючерс", "lot": 1, "type": "futures"},
-
-        # Акции (средняя волатильность)
-        "VKCO": {"figi": "TCS00A106YF0", "name": "VK", "lot": 1, "type": "share"},
-        "OZON": {"figi": "TCSC77321024", "name": "OZON", "lot": 1, "type": "share"},  # Внимание: AutoZone?
-        "LKOH": {"figi": "TCS509024277", "name": "Лукойл", "lot": 1, "type": "share"},
-        "YNDX": {"figi": "TCS109805522", "name": "Яндекс (Nebius)", "lot": 1, "type": "share"},
-        "GAZP": {"figi": "TCS907661625", "name": "Газпром", "lot": 10, "type": "share"},
-        "VTBR": {"figi": "TCS91A0JP5V6", "name": "ВТБ", "lot": 1000, "type": "share"},
-
-        # Облигации? (нужно проверить)
-        "SBER": {"figi": "BBG00XR1B5V7", "name": "Сбербанк облигация", "lot": 1, "type": "bond"},
+        "SBER": {
+            "figi": "BBG004730N88",
+            "lot": 10
+        },
+        "GAZP": {
+            "figi": "BBG004730RP0",
+            "lot": 10
+        },
+        "LKOH": {
+            "figi": "BBG004731032",
+            "lot": 1
+        }
     }
 
     def __init__(self, token: str):
@@ -313,6 +309,31 @@ class DataFetcher:
         """Возвращает список доступных тикеров"""
         return list(self.INSTRUMENTS.keys())
 
+    def get_latest_data(self, instrument):
+
+        info = self.get_instrument_info(instrument)
+
+        if not info:
+            print(f"❌ Инструмент {instrument} не найден")
+            return None
+
+        figi = info["figi"]
+
+        df = self.fetch_candles(figi, days_back=1)
+
+        if df.empty:
+            return None
+
+        last = df.iloc[-1]
+
+        return {
+            "open": last["open"],
+            "high": last["high"],
+            "low": last["low"],
+            "close": last["close"],
+            "volume": last["volume"]
+        }
+
     def print_instruments_info(self):
         """Выводит информацию о доступных инструментах"""
         print("\n📊 Доступные инструменты:")
@@ -341,23 +362,6 @@ class DataFetcher:
         print("=" * 90)
         print("\n⚠️  Внимание: Фьючерсы имеют ограниченный срок жизни (дата экспирации)")
         print("   Для торговли фьючерсами нужно учитывать дату окончания контракта")
-
-        def get_latest_data(self, instrument):
-
-            candles = self.get_candles(instrument)
-
-            if not candles:
-                return None
-
-            last = candles[-1]
-
-            return {
-                "open": last.open,
-                "high": last.high,
-                "low": last.low,
-                "close": last.close,
-                "volume": last.volume
-            }
 
 
 def main():
