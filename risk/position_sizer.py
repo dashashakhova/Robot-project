@@ -1,8 +1,7 @@
 """
 Модуль для расчета размера позиции на основе риска
 """
-import numpy as np
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional
 from datetime import datetime
 
 from core.config import config
@@ -22,9 +21,8 @@ class PositionSizeManager:
         self.max_daily_loss_pct = config.get('risk', 'max_daily_loss_pct', default=0.05)
 
         # История для отслеживания дневных убытков
-        self.daily_pnl = {}
         self.current_day = datetime.now().date()
-        self.daily_loss = 0.0
+        self.daily_loss = 0.0  # Накопленный убыток за день (только downside, всегда >= 0)
 
         # Статистика
         self.trade_history = []
@@ -64,7 +62,6 @@ class PositionSizeManager:
 
         # Рассчитываем риск в рублях
         risk_per_share = abs(entry_price - stop_loss_price)
-        risk_per_share_pct = risk_per_share / entry_price
 
         # Максимальный риск в рублях (2% от капитала)
         max_risk_rub = self.capital * self.max_risk_per_trade
@@ -75,8 +72,17 @@ class PositionSizeManager:
         else:
             shares_by_risk = 0
 
-        # Максимальное количество акций исходя из капитала (с плечом)
-        max_position_value = self.capital * (1 / self.max_position_pct)  # Например, при 25% можно использовать плечо 4x
+        # Максимальное количество акций исходя из лимита доли капитала
+        position_pct = min(max(self.max_position_pct, 0.0), 1.0)
+        if position_pct == 0:
+            return {
+                'can_trade': False,
+                'reason': 'Invalid max_position_size_pct',
+                'position_size': 0,
+                'risk_amount': 0
+            }
+
+        max_position_value = self.capital * position_pct
         shares_by_capital = max_position_value / entry_price
 
         # Итоговое количество акций - минимум из двух ограничений
@@ -89,7 +95,7 @@ class PositionSizeManager:
 
         position_value = shares * entry_price
         risk_amount = shares * risk_per_share
-        risk_pct = risk_amount / self.capital
+        risk_pct = risk_amount / self.capital if self.capital > 0 else 0
 
         # Проверяем минимальный размер позиции
         min_position_value = self.capital * 0.01  # минимум 1% от капитала
@@ -129,7 +135,7 @@ class PositionSizeManager:
 
         # Проверяем лимит
         max_daily_loss = self.capital * self.max_daily_loss_pct
-        return abs(self.daily_loss) < max_daily_loss
+        return self.daily_loss < max_daily_loss
 
     def _calculate_target_price(self, entry_price: float, risk_per_share: float,
                                 direction: str) -> float:
@@ -151,11 +157,13 @@ class PositionSizeManager:
         """Обновляет статистику после сделки"""
         self.trade_history.append(trade_result)
 
-        # Обновляем дневной PnL
-        self.daily_loss += trade_result.get('pnl', 0)
+        # Обновляем дневной убыток: учитываем только отрицательные сделки
+        pnl = trade_result.get('pnl', 0)
+        if pnl < 0:
+            self.daily_loss += abs(pnl)
 
         # Обновляем счетчик последовательных убытков
-        if trade_result.get('pnl', 0) < 0:
+        if pnl < 0:
             self.consecutive_losses += 1
         else:
             self.consecutive_losses = 0

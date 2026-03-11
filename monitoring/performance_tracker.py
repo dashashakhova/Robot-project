@@ -93,6 +93,10 @@ class PerformanceTracker:
         Args:
             trade: информация о сделке
         """
+        trade = self._normalize_trade(trade)
+        if trade is None:
+            return
+
         self.trades.append(trade)
 
         # Обновляем дневную статистику
@@ -175,8 +179,65 @@ class PerformanceTracker:
         day_trades = [t for t in self.trades if t['exit_time'].date() == date]
         if not day_trades:
             return 0.0
-        wins = sum(1 for t in day_trades if t['pnl'] > 0)
+        wins = sum(1 for t in day_trades if t.get('pnl', 0) > 0)
         return wins / len(day_trades)
+
+    @staticmethod
+    def _normalize_trade(trade: Dict) -> Optional[Dict]:
+        """Нормализует формат сделки под единый контракт."""
+        if not isinstance(trade, dict):
+            return None
+
+        entry_time = trade.get('entry_time')
+        exit_time = trade.get('exit_time')
+        if isinstance(entry_time, str):
+            entry_time = datetime.fromisoformat(entry_time)
+        if isinstance(exit_time, str):
+            exit_time = datetime.fromisoformat(exit_time)
+
+        if not isinstance(entry_time, datetime) or not isinstance(exit_time, datetime):
+            return None
+
+        trade_type = trade.get('type')
+        direction = trade.get('direction')
+        if direction is None:
+            if trade_type == 'BUY':
+                direction = 'LONG'
+            elif trade_type == 'SELL':
+                direction = 'SHORT'
+            else:
+                direction = 'UNKNOWN'
+
+        pnl = trade.get('pnl')
+        if pnl is None:
+            pnl_pct = trade.get('pnl_pct', trade.get('profit', 0))
+            # Если абсолютный PnL не передан, сохраняем 0, но процент оставляем
+            pnl = 0
+        else:
+            pnl_pct = trade.get('pnl_pct', trade.get('profit', 0))
+
+        try:
+            pnl = float(pnl)
+        except (TypeError, ValueError):
+            pnl = 0.0
+
+        try:
+            pnl_pct = float(pnl_pct)
+        except (TypeError, ValueError):
+            pnl_pct = 0.0
+
+        return {
+            'entry_time': entry_time,
+            'exit_time': exit_time,
+            'instrument': trade.get('instrument', 'UNKNOWN'),
+            'direction': direction,
+            'entry_price': float(trade.get('entry_price', 0) or 0),
+            'exit_price': float(trade.get('exit_price', 0) or 0),
+            'pnl': pnl,
+            'pnl_pct': pnl_pct,
+            'reason': trade.get('reason', 'unknown'),
+            'holding_period': trade.get('holding_period')
+        }
 
     def get_daily_stats(self, days: int = 30) -> pd.DataFrame:
         """
@@ -398,15 +459,16 @@ class PerformanceTracker:
             ],
             'trades': [
                 {
-                    'entry_time': t['entry_time'].isoformat(),
-                    'exit_time': t['exit_time'].isoformat(),
-                    'instrument': t['instrument'],
-                    'direction': t['direction'],
-                    'entry_price': t['entry_price'],
-                    'exit_price': t['exit_price'],
-                    'pnl': t['pnl'],
-                    'pnl_pct': t['pnl_pct'],
-                    'reason': t['reason']
+                    'entry_time': t.get('entry_time').isoformat() if t.get('entry_time') else None,
+                    'exit_time': t.get('exit_time').isoformat() if t.get('exit_time') else None,
+                    'instrument': t.get('instrument', 'UNKNOWN'),
+                    'direction': t.get('direction', 'UNKNOWN'),
+                    'entry_price': t.get('entry_price', 0),
+                    'exit_price': t.get('exit_price', 0),
+                    'pnl': t.get('pnl', 0),
+                    'pnl_pct': t.get('pnl_pct', 0),
+                    'reason': t.get('reason', 'unknown'),
+                    'holding_period': t.get('holding_period')
                 }
                 for t in self.trades
             ],
@@ -439,17 +501,9 @@ class PerformanceTracker:
 
             # Загружаем сделки
             for t in history.get('trades', []):
-                self.trades.append({
-                    'entry_time': datetime.fromisoformat(t['entry_time']),
-                    'exit_time': datetime.fromisoformat(t['exit_time']),
-                    'instrument': t['instrument'],
-                    'direction': t['direction'],
-                    'entry_price': t['entry_price'],
-                    'exit_price': t['exit_price'],
-                    'pnl': t['pnl'],
-                    'pnl_pct': t['pnl_pct'],
-                    'reason': t['reason']
-                })
+                normalized = self._normalize_trade(t)
+                if normalized:
+                    self.trades.append(normalized)
 
             # Загружаем дневную статистику
             for date_str, stats in history.get('daily_stats', {}).items():
