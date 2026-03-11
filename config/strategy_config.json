@@ -1,0 +1,30 @@
+{
+  "trading": {
+    "initial_capital": 1000000,
+    "max_position_size_pct": 0.25,
+    "max_portfolio_risk_pct": 0.1,
+    "commission": 0.001,
+    "slippage": 0.0005
+  },
+  "risk": {
+    "max_risk_per_trade": 0.02,
+    "max_daily_loss_pct": 0.05,
+    "max_consecutive_losses": 3,
+    "min_risk_reward": 1.5
+  },
+  "strategy": {
+    "forecast_hours": [
+      1,
+      2,
+      4
+    ],
+    "min_confidence": 0.6,
+    "train_days": 60,
+    "retrain_hours": 24
+  },
+  "monitoring": {
+    "check_interval_minutes": 5,
+    "signal_cooldown_minutes": 30,
+    "min_trades_for_stats": 20
+  }
+}
