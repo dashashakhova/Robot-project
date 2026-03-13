@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98bfb009-4313-4d6f-b9be-e7505cc9454a" name="Changes" comment="added execution engine">
-      <change afterPath="$PROJECT_DIR$/engine/market_data.py" afterDir="false" />
+    <list default="true" id="98bfb009-4313-4d6f-b9be-e7505cc9454a" name="Changes" comment="added market_data and fixed engine">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/data_fetcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/data_fetcher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,14 +130,23 @@
       <option name="project" value="LOCAL" />
       <updated>1773231191870</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added market_data and fixed engine">
+      <option name="closed" value="true" />
+      <created>1773251161425</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1773251161425</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="v1&#10;Работает:&#10;VKCO - загружено 6186 минутных свечей за 7 дней&#10;&#10;Волатильность (минутная годовая): 37.8% - отличный показатель для интрадей торговли&#10;&#10;Цена ~300 руб, хороший объем&#10;&#10;Это именно то, что нам нужно для тестирования стратегии&#10;&#10;Не работают:&#10;Фьючерсы (MTLR, SMLT, AFKS, GMKN) - нет данных. Возможно, для фьючерсов нужно использовать другие интервалы или они уже истекли (в названии даты 06.23, 09.24)&#10;&#10;GAZP - не работает (возможно, неверный FIGI)&#10;&#10;OZON - не проверяли, но скорее всего не тот инструмент&#10;&#10;SBER - нашелся как облигация, не подходит для нашей стратегии" />
     <MESSAGE value="v2" />
     <MESSAGE value="added execution engine" />
-    <option name="LAST_COMMIT_MESSAGE" value="added execution engine" />
+    <MESSAGE value="added market_data and fixed engine" />
+    <option name="LAST_COMMIT_MESSAGE" value="added market_data and fixed engine" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
